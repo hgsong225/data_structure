@@ -90,4 +90,6 @@ typings/
 # test folder
 test
 
+.vscode/
+
 # End of https://www.gitignore.io/api/node
