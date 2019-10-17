@@ -6,11 +6,11 @@
 // Node to represent sparse matrix 
 struct Node 
 { 
-	int value; 
-	int row_index; 
-	int col_index; 
-	struct Node *next; 
-}; 
+	int value;
+	int row_index;
+	int col_index;
+	struct Node *next;
+};
 
 int probabilityOfZero(int prob, int digits);
 void inputValue(int **m, int row, int col);
@@ -38,19 +38,19 @@ void main() {
     outputValue(Matrix, row, col);
 
 	// 빈 리스트로 시작
-	struct Node* start = NULL; 
+	struct Node* start = NULL;
 
 	for (int i = 0; i < row; i += 1)
     {
-		for (int j = 0; j < col; j += 1) 
+		for (int j = 0; j < col;j += 1) 
         {
             // 0이 아닌 값만 넘김
 			if (Matrix[i][j] != 0) 
-				create_new_node(&start, Matrix[i][j], i, j); 
+				create_new_node(&start, Matrix[i][j], i, j);
         }
     }
 
-	printList(start); 
+	printList(start);
     allAddValuesInTheMatrix(start);
 
     for (int i = 0; i < row; i += 1) // 세로 크기만큼 반복.
@@ -73,7 +73,7 @@ void inputValue(int **m, int row, int col)
     int rand;
     for (int i = 0; i < row; i += 1)
     {
-        for (int j = 0; j < col; j += 1)
+        for (int j = 0; j < col;j += 1)
         {
             rand = probabilityOfZero(90, 10); // 90% 확률로 0 생성, 열자리 수
             m[i][j] = rand;
@@ -88,7 +88,7 @@ void outputValue(int **m, int row, int col)
 
     for (int i = 0; i < row; i += 1)
     {
-        for (int j = 0; j < col; j += 1)
+        for (int j = 0; j < col;j += 1)
         {
             printf("%d ", m[i][j]);
         }
@@ -101,76 +101,77 @@ void outputValue(int **m, int row, int col)
 /* 새 노드 생성 */
 void create_new_node(struct Node** start, int non_zero_element, int row_index, int column_index) 
 { 
-	struct Node *temp, *r; 
-	temp = *start;
-	if (temp == NULL) 
-	{ 
-		// 동적 노드 생성
-		temp = (struct Node *) malloc (sizeof(struct Node)); 
-		temp -> value = non_zero_element; 
-		temp -> row_index = row_index; 
-		temp -> col_index = column_index; 
-		temp -> next = NULL; 
-		*start = temp; 
-	} 
-	else
-	{ 
-		while (temp -> next != NULL) 
-			temp = temp -> next; 
+    struct Node *temp, *r;
+    temp = *start;
+    if (temp == NULL) 
+    {
+    // 동적 노드 생성
+    temp = (struct Node *) malloc (sizeof(struct Node));
+    temp -> value = non_zero_element;
+    temp -> row_index = row_index;
+    temp -> col_index = column_index;
+    temp -> next = NULL;
+    *start = temp;
+    } 
+    else
+    { 
+        while (temp -> next != NULL)
+        {
+            temp = temp -> next;
 
-		// 동적 노드 생성
-		r = (struct Node *) malloc (sizeof(struct Node)); 
-		r -> value = non_zero_element; 
-		r -> row_index = row_index; 
-		r -> col_index = column_index; 
-		r -> next = NULL; 
-		temp -> next = r; 
-
-	} 
+            // 동적 노드 생성
+            r = (struct Node *) malloc (sizeof(struct Node));
+            r -> value = non_zero_element;
+            r -> row_index = row_index;
+            r -> col_index = column_index;
+            r -> next = NULL;
+            temp -> next = r;
+        }
+    }
 } 
 
 /* Linked List의 내용을 처음부터 출력 */
 void printList(struct Node* start) 
-{ 
-	struct Node *temp, *r, *s; 
-	temp = r = s = start; 
+{
+    struct Node *temp, *r, *s;
+    temp = r = s = start;
 
-	printf("row_index: "); 
-	while(temp != NULL) 
-	{ 
-		printf("%d ", temp -> row_index); 
-		temp = temp -> next; 
-	} 
-	printf("\n"); 
+    printf("row_index: ");
+    while(temp != NULL) 
+    { 
+        printf("%d ", temp -> row_index);
+        temp = temp -> next;
+    } 
+    printf("\n");
 
-	printf("col_index: "); 
-	while(r != NULL) 
-	{ 
-		printf("%d ", r -> col_index); 
-		r = r -> next; 
-	} 
-	printf("\n"); 
-	printf("value: "); 
-	while(s != NULL) 
-	{ 
-		printf("%d ", s -> value); 
-		s = s -> next; 
-	} 
-	printf("\n"); 
+    printf("col_index: ");
+    while(r != NULL) 
+    { 
+        printf("%d ", r -> col_index);
+        r = r -> next;
+    } 
+    printf("\n");
+
+    printf("value: ");
+    while(s != NULL) 
+    { 
+        printf("%d ", s -> value);
+        s = s -> next;
+    } 
+    printf("\n");
 }
 
 int allAddValuesInTheMatrix(struct Node* start)
 {
-    int total = 0;
+    int total = 0; 
 
-	struct Node *s;
+    struct Node *s;
     s = start;
 
     while (s != NULL)
     {
         total += s -> value;
-		s = s -> next; 
-
+        s = s -> next;
     }
     printf("TOTAL: %d", total);
 }
