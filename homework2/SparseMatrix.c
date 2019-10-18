@@ -15,7 +15,7 @@ struct Node
 int probabilityOfZero(int prob, int digits);
 void inputValue(int **m, int row, int col);
 void outputValue(int **m, int row, int col);
-void create_new_node(struct Node** start, int non_zero_element, int row_index, int column_index);
+void createNewNodes(struct Node** start, int non_zero_element, int row_index, int column_index);
 void printList(struct Node* start);
 int allAddValues(struct Node* start);
 
@@ -46,7 +46,7 @@ void main() {
         {
             // 0이 아닌 값만 넘김
 			if (Matrix[i][j] != 0) 
-				create_new_node(&start, Matrix[i][j], i, j);
+				createNewNodes(&start, Matrix[i][j], i, j);
         }
     }
 
@@ -99,7 +99,7 @@ void outputValue(int **m, int row, int col)
 }
 
 /* 새 노드 생성 */
-void create_new_node(struct Node** start, int non_zero_element, int row_index, int column_index) 
+void createNewNodes(struct Node** start, int non_zero_element, int row_index, int column_index) 
 { 
     struct Node *temp, *r;
     temp = *start;
