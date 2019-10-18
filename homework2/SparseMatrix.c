@@ -19,7 +19,8 @@ void createNewNodes(struct Node** start, int non_zero_element, int row_index, in
 void printList(struct Node* start);
 int allAddValues(struct Node* start);
 
-void main() {
+void main()
+{
     int row, col;
 
     printf("Input row in Matrix:  ");

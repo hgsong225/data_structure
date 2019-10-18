@@ -10,7 +10,8 @@ int isFull(void);
 void enqueue(int value);
 int dequeue();
 
-int main(){
+int main()
+{
     int i = 0;
 
     for (i = 0; i < MAX; i += 1)
