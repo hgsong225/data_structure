@@ -26,6 +26,38 @@
 char stack[SIZE];
 int top = -1;
 
+/* 함수 */
+void push(char item);
+char pop();
+int is_operator(char symbol);
+int precedence(char symbol);
+void InfixToPostfix(char infix_exp[], char postfix_exp[]);
+
+/* main function begins */
+int main()
+{
+	char infix[SIZE], postfix[SIZE];         /* declare infix string and postfix string */
+    int i;
+	/* why we asked the user to enter infix expression
+	* in parentheses ( )
+	* What changes are required in porgram to
+	* get rid of this restriction since it is not
+	* in algorithm
+	* */
+	printf("ASSUMPTION: The infix expression contains single letter variables and single digit constants only.\n");
+    for (i = 1; i <= 5; i += 1)
+    {
+    	printf("\n #  %d  # Enter Infix expression : ", i);
+    	gets(infix);
+
+    	InfixToPostfix(infix, postfix);                   /* call to convert */
+    	printf(" #  %d  # Postfix Expression: ", i);
+    	puts(postfix);                     /* print postfix expression */
+    }
+
+	return 0;
+}
+
 /* define push operation */
 
 void push(char item)
@@ -182,29 +214,4 @@ void InfixToPostfix(char infix_exp[], char postfix_exp[])
 	postfix_exp[j] = '\0'; /* add sentinel else puts() fucntion */
 	/* will print entire postfix[] array upto SIZE */
 
-}
-
-/* main function begins */
-int main()
-{
-	char infix[SIZE], postfix[SIZE];         /* declare infix string and postfix string */
-    int i;
-	/* why we asked the user to enter infix expression
-	* in parentheses ( )
-	* What changes are required in porgram to
-	* get rid of this restriction since it is not
-	* in algorithm
-	* */
-	printf("ASSUMPTION: The infix expression contains single letter variables and single digit constants only.\n");
-    for (i = 1; i <= 5; i += 1)
-    {
-    	printf("\n #  %d  # Enter Infix expression : ", i);
-    	gets(infix);
-
-    	InfixToPostfix(infix, postfix);                   /* call to convert */
-    	printf(" #  %d  # Postfix Expression: ", i);
-    	puts(postfix);                     /* print postfix expression */
-    }
-
-	return 0;
 }

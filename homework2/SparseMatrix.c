@@ -3,7 +3,7 @@
 #include<stdio.h> 
 #include<stdlib.h> 
 
-// Node to represent sparse matrix 
+// 희소 행렬을 표현하기 위한 구조체
 struct Node 
 { 
 	int value;
@@ -17,7 +17,7 @@ void inputValue(int **m, int row, int col);
 void outputValue(int **m, int row, int col);
 void create_new_node(struct Node** start, int non_zero_element, int row_index, int column_index);
 void printList(struct Node* start);
-int allAddValuesInTheMatrix(struct Node* start);
+int allAddValues(struct Node* start);
 
 void main() {
     int row, col;
@@ -51,7 +51,7 @@ void main() {
     }
 
 	printList(start);
-    allAddValuesInTheMatrix(start);
+    allAddValues(start);
 
     for (int i = 0; i < row; i += 1) // 세로 크기만큼 반복.
     { 
@@ -61,7 +61,7 @@ void main() {
     free(Matrix); // 2차원 배열의 세로 공간 메모리 해제
 }
 
-// prob = 0이 나올 확률, digits = 자릿수
+/* prob = 0이 나올 확률, digits = 자릿수 */ 
 int probabilityOfZero(int prob, int digits)
 {
     return ((rand() % 100) < prob) ? 0 : (rand() % digits);
@@ -161,7 +161,8 @@ void printList(struct Node* start)
     printf("\n");
 }
 
-int allAddValuesInTheMatrix(struct Node* start)
+/* Linked List 모든 value 값 총합 (희소 행렬내 0이 아닌 수 들의 총합) */
+int allAddValues(struct Node* start)
 {
     int total = 0; 
 
