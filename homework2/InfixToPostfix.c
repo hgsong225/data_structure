@@ -18,8 +18,10 @@
 #include <stdlib.h>      /* for exit() */
 #include <ctype.h>     /* for isdigit(char ) */
 #include <string.h>
+#include <time.h>
 
-#define SIZE 100
+#define SIZE 100000
+clock_t start, finish, used_time = 0;    //실행 시간 측정을 위한 변수
 
 /* declared here as global variable because stack[]
 * is used by more than one fucntions */
@@ -27,17 +29,25 @@ char stack[SIZE];
 int top = -1;
 
 /* 함수 */
+void calcTime(void);
 void push(char item);
 char pop();
 int is_operator(char symbol);
 int precedence(char symbol);
 void InfixToPostfix(char infix_exp[], char postfix_exp[]);
 
+void calcTime(void)
+{
+    used_time = finish - start;
+    printf("ALL DONE!\n Time: %f sec\n\n",(float)used_time/CLOCKS_PER_SEC);
+}
+
 /* main function begins */
 int main()
 {
 	char infix[SIZE], postfix[SIZE];         /* declare infix string and postfix string */
     int i;
+    
 	/* why we asked the user to enter infix expression
 	* in parentheses ( )
 	* What changes are required in porgram to
@@ -52,8 +62,18 @@ int main()
 
     	InfixToPostfix(infix, postfix);                   /* call to convert */
     	printf(" #  %d  # Postfix Expression: ", i);
+    	printf("strlen: %d\n", strlen(infix));
+
+        start = clock();
+
     	puts(postfix);                     /* print postfix expression */
+    	printf("length: %d\n", strlen(postfix));
+
+        finish = clock();
+        calcTime();
     }
+
+
 
 	return 0;
 }

@@ -1,19 +1,29 @@
 #include <stdio.h>
+#include <time.h>
 
-#define MAX 20
+#define MAX 100000
 int front = -1;
 int rear = -1;
 int queue[MAX];
+clock_t start, finish, used_time = 0;    //실행 시간 측정을 위한 변수
 
+void calcTime(void);
 int IsEmpty(void);
 int isFull(void);
 void enqueue(int value);
 int dequeue();
 
+void calcTime(void)
+{
+    used_time = finish - start;
+    printf("ALL DONE!\n Time: %f sec\n\n",(float)used_time/CLOCKS_PER_SEC);
+}
+
 int main()
 {
     int i = 0;
 
+    start = clock();
     for (i = 0; i < MAX; i += 1)
     {
         enqueue(i + 1);
@@ -25,6 +35,9 @@ int main()
     }
     dequeue();
     
+    finish = clock();
+    calcTime();
+
     return 0;
 }
 
