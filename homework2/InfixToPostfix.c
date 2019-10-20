@@ -203,12 +203,6 @@ void InfixToPostfix(char infix_exp[], char postfix_exp[])
 		getchar();
 		exit(1);
 	}
-	if (top > 0)
-	{
-		printf("\nInvalid infix Expression.\n");        /* the it is illegeal  symbol */
-		getchar();
-		exit(1);
-	}
 
 
 	postfix_exp[j] = '\0'; /* add sentinel else puts() fucntion */
