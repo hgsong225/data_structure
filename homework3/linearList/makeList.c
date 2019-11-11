@@ -101,3 +101,43 @@ void addTerm_in_List(struct List * L, struct Term * meNode){
 		}
 	}
 }
+void String_Listize(List *Dlist, char *line)
+{   //token = ax^5
+    double coef=0; int expo=0, len, index=0; //index는 x의 위치를 가르킨다.
+    len=strlen(line);
+    
+    /*coef에 대한 처리*/
+    char *ptr=line; //문자열의 시작 지점 포인터로 지정하여 atof로 숫자로 바꿔준다.
+    if (line[0]=='x') //예외 1) coef없이 x만 오는 경우
+        coef=1;
+    else if ((line[0]=='+'||line[0]=='-')&&line[1]=='x') //예외 2) +x, -x의 경우: index(x의 위치)는 1 coef는 1
+    {
+        index=1; coef=1;
+    }
+    else
+    {
+        for (int i=0; i<len; i++) // x를 만나면 널 값으로 바꾸어 coef를 구한다.
+            if (line[i]=='x')
+            {
+                line[i]='\0';
+                index=i;
+            }
+        coef=atof(ptr);
+    }
+    
+        /*expo에 대한 처리*/
+        ptr=&line[index+1]; //ptr을 x의 다음 지점으로 옮겨준다.
+        if(ptr[0]=='^') //^가 있으면 expo를 구한다.
+        {
+            ptr[0]='0';
+            expo=atoi(ptr);
+        }
+        else if(index==0) //예외2) index가 0이면 x가 없음으로 expo는 0
+            expo=0;
+        else  //x만 혼자 오는 경우
+            expo=1;
+
+    struct Term * t = make_Node(coef, expo);
+    /*데이터 삽입*/
+    addTerm_in_List(Dlist, t);
+}
