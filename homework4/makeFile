@@ -1,0 +1,8 @@
+all : polytree
+polytree : polytree.o
+gcc -o polytree polytree.o
+
+polytree.o : polytree.c
+gcc -c polytree.c
+clean :
+-del polytree.exe
