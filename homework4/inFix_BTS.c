@@ -24,7 +24,7 @@ int full2();
 int empty2();
 int top2 = 0;
 
-void changeTree(); // 산술식을 트리로 만들어 주는 함수
+void changeToTree(); // 산술식을 트리로 만들어 주는 함수
 struct node* makeNode(char); // 하나의 노드를 만들어 주소값을 반환
 void makeOneTree(char); // 한개의 루트 아래 두개의 subtree를 가지는 트리 생성
 void inOrder(struct node*); // infix 출력
@@ -35,8 +35,8 @@ int isp(char a); // 연산자에 대한 level값 반환
 int main() {
     printf("Please enter an infix math expression = ");
     gets(poly);
-    changeTree();
-    printf("changeTree is OK\n");
+    changeToTree();
+    printf("changeToTree is OK\n");
     printf("inOrder = ");
     inOrder(tree);
     printf("\npreOrder = ");
@@ -47,7 +47,7 @@ int main() {
     return 0;
 }
 
-void changeTree() {
+void changeToTree() {
     int i;
     char data;
     for(i = 0; i < MAX; i += 1) {
@@ -73,7 +73,7 @@ void changeTree() {
             }
             else pushOpe1(data);
         }
-        else{
+        else {
             pushOpe2(makeNode(data));
         }
     }
